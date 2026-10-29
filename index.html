@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THINKSPRINT - Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h2>⚡ THINKSPRINT</h2>
+    <nav>
+        <button onclick="goToView('home')">Home</button>
+        <button onclick="goToView('categories')">Categories</button>
+        <button onclick="goToView('about')">About</button>
+        <button onclick="goToView('contact')">Contact</button>
+        <button onclick="openProfile()" id="profileButton">🐱 Profile</button>
+    </nav>
+</header>
+
+<main>
+    <section id="home" class="page-view active-view">
+        <div class="hero">
+            <p class="tagline">CHALLENGE YOUR MIND</p>
+            <h1>Welcome to <span>THINKSPRINT</span></h1>
+            <p>Test your knowledge, challenge yourself, and become a quiz champion.</p>
+            <button class="main-button" onclick="goToView('categories')">
+                Start Quiz 🚀
+            </button>
+
+            <div class="stats">
+                <div><h2>10+</h2><p>Categories</p></div>
+                <div><h2>∞</h2><p>Challenges</p></div>
+                <div><h2>100%</h2><p>Fun</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="page-view">
+        <h1>Choose Your Category</h1>
+        <p>Select a topic and test your knowledge.</p>
+
+        <div class="category-grid">
+            <button class="category-card" onclick="startQuiz(9)">
+                🧠<h3>General Knowledge</h3>
+            </button>
+            <button class="category-card" onclick="startQuiz(18)">
+                💻<h3>Computer Science</h3>
+            </button>
+            <button class="category-card" onclick="startQuiz(17)">
+                🔬<h3>Science</h3>
+            </button>
+            <button class="category-card" onclick="startQuiz(23)">
+                📜<h3>History</h3>
+            </button>
+            <button class="category-card" onclick="startQuiz(21)">
+                ⚽<h3>Sports</h3>
+            </button>
+            <button class="category-card" onclick="startQuiz(22)">
+                🌍<h3>Geography</h3>
+            </button>
+        </div>
+
+        <button class="back-button" onclick="goToView('home')">← Home</button>
+    </section>
+
+    <section id="quiz" class="page-view">
+        <div class="quiz-box">
+            <div class="quiz-top">
+                <span id="questionNumber">Question 1</span>
+                <span>⏱️ <span id="timer">15</span>s</span>
+                <span>Score: <span id="score">0</span></span>
+            </div>
+
+            <h2 id="question">Loading question...</h2>
+            <div id="answers" class="answers"></div>
+
+            <p id="feedback"></p>
+
+            <button id="nextButton" class="main-button"
+                    onclick="nextQuestion()" disabled>
+                Next Question →
+            </button>
+
+            <button class="back-button" onclick="goToView('categories')">
+                Exit Quiz
+            </button>
+        </div>
+    </section>
+
+    <section id="result" class="page-view">
+        <div class="quiz-box">
+            <h1>🎉 Quiz Completed!</h1>
+            <h2 id="finalScore">Your score: 0</h2>
+            <p id="resultMessage">Great effort!</p>
+            <button class="main-button" onclick="goToView('categories')">
+                Play Again
+            </button>
+            <button class="back-button" onclick="goToView('home')">
+                Home
+            </button>
+        </div>
+    </section>
+
+    <section id="about" class="page-view">
+        <div class="content-card">
+            <h1>About THINKSPRINT</h1>
+            <p>
+                THINKSPRINT is an interactive quiz application designed to
+                improve knowledge through fun and challenging questions.
+            </p>
+            <p>Choose a category, answer questions, and track your score.</p>
+            <button class="back-button" onclick="goToView('home')">← Home</button>
+        </div>
+    </section>
+
+    <section id="contact" class="page-view">
+        <div class="content-card">
+            <h1>Contact Us</h1>
+            <p>Have feedback or suggestions? Send us a message.</p>
+            <form id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button class="main-button" type="submit">Send Message</button>
+            </form>
+            <button class="back-button" onclick="goToView('home')">← Home</button>
+        </div>
+    </section>
+</main>
+
+<div id="profileModal" class="modal">
+    <div class="profile-card">
+        <button class="close-button" onclick="closeProfile()">✕</button>
+        
+<h2>My Profile 👤</h2>
+<p>Personalize your THINKSPRINT experience.</p>
+
+<div class="profile-best-score">
+    <span>🏆</span>
+    <div>
+        <h3>Highest Score</h3>
+        <p id="profileBestScore">No quiz played yet</p>
+    </div>
+</div>
+
+        <form id="profileForm">
+            <input id="username" type="text" placeholder="Enter username"
+                   maxlength="20" required>
+            <input id="email" type="email" placeholder="Email (optional)">
+
+            <h3>Choose Your Avatar</h3>
+            <div class="avatar-grid" id="avatarGrid">
+                <button type="button" class="avatar selected" data-avatar="🐱">🐱</button>
+                <button type="button" class="avatar" data-avatar="🐼">🐼</button>
+                <button type="button" class="avatar" data-avatar="🦊">🦊</button>
+                <button type="button" class="avatar" data-avatar="🐸">🐸</button>
+                <button type="button" class="avatar" data-avatar="🐰">🐰</button>
+                <button type="button" class="avatar" data-avatar="🐻">🐻</button>
+                <button type="button" class="avatar" data-avatar="🐧">🐧</button>
+                <button type="button" class="avatar" data-avatar="🦄">🦄</button>
+            </div>
+
+            <button class="main-button" type="submit">Save Profile</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 THINKSPRINT | Challenge Your Mind ⚡</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
